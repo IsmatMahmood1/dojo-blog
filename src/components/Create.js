@@ -1,10 +1,12 @@
-import { useState } from "react"
+import { useState } from "react";
+import { useHistory } from "react-router";
 
 export function Create() {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [author, setAuthor] = useState('Mario');
     const [isPending, setIsPending] = useState(false);
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,8 +16,11 @@ export function Create() {
             headers: { "Content-Type":"application/json" },
             body: JSON.stringify(blog)
         }).then(() => {console.log('new blog added');
-            setIsPending(false)
+            setIsPending(false);
+            // history.go(-1);
+            history.push('/'); //redirecting to the home page path
         })
+        
     }
 
     return (
