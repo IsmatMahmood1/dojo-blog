@@ -9,7 +9,7 @@ export function useFetch (url) {
     useEffect(() => {
         const abortCont = new AbortController();
 
-        fetch(url, {signal:abortCont.signal})
+        fetch(url, { signal:abortCont.signal })
             .then(response => {
                 if (!response.ok) {
                     throw Error('could not fetch data')
@@ -24,9 +24,10 @@ export function useFetch (url) {
             .catch(error => {
                 if (error.name === 'AbortError'){
                     console.log('fetch abort error')
-                }
+                } else {
                 setIsPending(false);
                 setError(error.message);
+                }
             })
             return () => abortCont.abort();
         }, [url])

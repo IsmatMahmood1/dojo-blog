@@ -2,10 +2,11 @@ import { Navbar } from './components/Navbar';
 import { Home } from './components/Home';
 import { Create } from './components/Create';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BlogDetails } from './components/BlogDetails';
 
 
 function App() {
-  const title = 'Welcome to the new blog!';
+
   return (
     <Router>
       <div className="App">
@@ -17,6 +18,9 @@ function App() {
             </Route>
             <Route path="/create">
               <Create />
+            </Route>
+            <Route path="/blogs/:id">
+              <BlogDetails />
             </Route>
           </Switch>
 
